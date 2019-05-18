@@ -45,32 +45,41 @@ function fetch(value, callback) {
 }
 
 class SearchInput extends React.Component {
-  state = {
-    data: [],
-    value: undefined,
-  };
+  constructor(props){ 
+    super(props);
+    this.state = {
+      data: [],
+      // value: undefined,
+    };
+  }
 
+  handleSelect = (value, option) => {
+    console.log("value", value);
+    console.log("option", option);
+  }
+  
   handleSearch = value => {
     fetch(value, data => this.setState({ data }));
   };
 
-  handleChange = value => {
-    this.setState({ value });
-  };
+  // handleChange = value => {
+  //   this.setState({ value });
+  // };
 
   render() {
     const options = this.state.data.map(d => <Option key={d.value}>{d.text}</Option>);
     return (
       <Select
         showSearch
-        value={this.state.value}
+        value={this.props.value}
         placeholder={this.props.placeholder}
         style={this.props.style}
         defaultActiveFirstOption={false}
         showArrow={false}
         filterOption={false}
+        // onSelect={this.handleSelect}
         onSearch={this.handleSearch}
-        onChange={this.handleChange}
+        onChange={this.props.onChange}
         notFoundContent={null}
       >
         {options}
