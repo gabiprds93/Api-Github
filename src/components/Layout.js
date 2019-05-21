@@ -5,7 +5,10 @@ class Layout extends React.Component {
     render(){
         return (
             <React.Fragment>
-                <SearchInput placeholder="input search text" style={{ width: 200 }} onChange={this.props.onChange} value={this.props.value}/>
+                <SearchInput placeholder="input search text" style={{ width: 200 }} 
+                onChange={this.props.onChange} 
+                value={this.props.value} 
+                onClick={this.props.onClick}/>
                 {this.props.children}
             </React.Fragment>
         );

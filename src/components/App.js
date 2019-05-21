@@ -10,6 +10,9 @@ class App extends React.Component{
     this.state = {
       value: undefined,
       login: undefined,
+      user: {name: ""},
+      loading: false,
+      error: null,
     }
   }
   
@@ -18,16 +21,37 @@ class App extends React.Component{
     this.setState({
       value: value,
       login: option.props.children,
-    })
+    });
+  }
+
+  fetchData = async () => {
+    this.setState({
+      loading: true,
+      error: null,
+    });
+
+    try{
+      const response = await fetch(`https://api.github.com/users/${this.state.login}`);
+      const user = await response.json();
+      this.setState({
+        loading: false,
+        user: user,
+      });
+    } catch(error){
+      this.setState({
+        loading: false,
+        error: error,
+      });
+    }
   }
   
   render(){
     return (
       <BrowserRouter>
-        <Layout onChange={this.handleChange} value={this.state.value}>
+        <Layout onChange={this.handleChange} value={this.state.value} onClick={this.fetchData}>
           <Switch>
             <Route exact path="/search-result" render={(props) => (
-              <SearchResult value={this.state.value} login={this.state.login} {...props} /> )} 
+              <SearchResult value={this.state.value} login={this.state.login} user={this.state.user} {...props} /> )} 
             />
             <Route exact path="/user-profile" component={UserProfile} />
           </Switch>

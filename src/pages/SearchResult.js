@@ -1,60 +1,54 @@
 import React from 'react';
-
-import jsonp from 'fetch-jsonp';
-import querystring from 'querystring';
-
-let timeout;
-let currentValue;
-
-function fetch(value, callback) {
-  if (timeout) {
-    clearTimeout(timeout);
-    timeout = null;
-  }
-  currentValue = value;
-
-  function fake() {
-    const str = querystring.encode({
-      // code: 'utf-8',
-      q: value,
-    });
-    jsonp(`https://api.github.com/users/value`)
-      .then(response => response.json())
-      .then(d => {
-        if (currentValue === value) {
-          let result = [];
-          if(d.data.items !== undefined){
-            result = d.data.items;
-          }
-          const data = [];
-          result.forEach(r => {
-            data.push({
-              value: r.id,
-              text: r.login,
-            });
-          });
-          callback(data);
-        }
-      });
-  }
-
-  timeout = setTimeout(fake, 300);
-}
+import {Button} from 'antd'
 
 class SearchResult extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            text: undefined,
+            loading: true,
+            error: null,
+            data: undefined,                  
         }
     }
     handleChange = value =>{
         console.log(this.props.login);
         // this.setState({text: this.props.option.props.children});
     }
+    
+    // componentDidMount(){
+    //   this.fetchData();
+    // }
+
+    // fetchData = async () => {
+    //   this.setState({
+    //     loading: true,
+    //     error: null,
+    //   });
+
+    //   try{
+    //     const response = await fetch(`https://api.github.com/users/${this.props.login}`);
+    //     const data = await response.json();
+    //     this.setState({
+    //       loading: false,
+    //       data: data,
+    //     });
+    //   } catch(error){
+    //     this.setState({
+    //       loading: false,
+    //       error: error,
+    //     });
+    //   }
+    // }
+
     render(){
+      if(this.props.loading === true){
+        return (
+          <Button shape="circle" loading />
+        )
+      }
         return(
             <div>
+              {this.props.user.name}
             {this.props.value} - {this.props.login}
             </div>
             

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import { Select } from 'antd';
+import { Link } from 'react-router-dom'
+import { Select, Button } from 'antd';
 import jsonp from 'fetch-jsonp';
 import querystring from 'querystring';
 
@@ -66,24 +66,50 @@ class SearchInput extends React.Component {
   //   this.setState({ value });
   // };
 
+  // fetchData = async () => {
+  //   this.setState({
+  //     loading: true,
+  //     error: null,
+  //   });
+
+  //   try{
+  //     const response = await fetch(`https://api.github.com/users/${this.props.value}`);
+  //     const data = await response.json();
+  //     this.setState({
+  //       loading: false,
+  //       data: data,
+  //     });
+  //   } catch(error){
+  //     this.setState({
+  //       loading: false,
+  //       error: error,
+  //     });
+  //   }
+  // }
+
   render() {
     const options = this.state.data.map(d => <Option key={d.value}>{d.text}</Option>);
     return (
-      <Select
-        showSearch
-        value={this.props.value}
-        placeholder={this.props.placeholder}
-        style={this.props.style}
-        defaultActiveFirstOption={false}
-        showArrow={false}
-        filterOption={false}
-        // onSelect={this.handleSelect}
-        onSearch={this.handleSearch}
-        onChange={this.props.onChange}
-        notFoundContent={null}
-      >
-        {options}
-      </Select>
+      <React.Fragment>
+        <Select
+          showSearch
+          value={this.props.value}
+          placeholder={this.props.placeholder}
+          style={this.props.style}
+          defaultActiveFirstOption={false}
+          showArrow={false}
+          filterOption={false}
+          // onSelect={this.handleSelect}
+          onSearch={this.handleSearch}
+          onChange={this.props.onChange}
+          notFoundContent={null}
+        >
+          {options}
+        </Select>
+        {/* <Link to='/search-result'> */}
+          <Button shape="circle" icon="search" onClick={this.props.onClick}></Button>
+        {/* </Link> */}
+      </React.Fragment>
     );
   }
 }
