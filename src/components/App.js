@@ -17,7 +17,6 @@ class App extends React.Component{
   }
   
   handleChange = (value, option) => {
-    // console.log(option);
     this.setState({
       value: value,
       login: option.props.children,
@@ -49,13 +48,17 @@ class App extends React.Component{
     return (
       <BrowserRouter>
         <Layout onChange={this.handleChange} value={this.state.value} onClick={this.fetchData}>
-        {/* <SearchResult value={this.state.value} login={this.state.login} user={this.state.user} /> */}
           <Switch>
             <Route exact path="/search-result" render={(props) => (
-              <SearchResult value={this.state.value} login={this.state.login} user={this.state.user} {...props} /> )} 
+              <SearchResult 
+                user={this.state.user} 
+                loading={this.state.loading} 
+                {...props} /> )} 
             />
             <Route exact path="/user-profile" render={(props) => (
-              <UserProfile value={this.state.value} login={this.state.login} user={this.state.user} {...props} /> )}
+              <UserProfile 
+                user={this.state.user} 
+                {...props} /> )}
             />
           </Switch>
         </Layout>

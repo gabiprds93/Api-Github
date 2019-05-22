@@ -4,15 +4,15 @@
     justify-content: space-around;
     padding: 1rem 2rem;
 }
-
 .search-bar button{
     border: none;
 }
-
 .search-bar .ant-select{
     width: 80%;
 }
-
 .search-bar i{
     font-size: 2rem;
+}
+.search-bar a{
+    color: black;
 }

@@ -1,3 +1,12 @@
+.user-profile{
+    padding: 1rem 2rem;
+}
+.user-profile > div:nth-child(2){
+    padding-left: 1rem;
+}
 .user-profile img{
     width: 100%;
+}
+.user-profile h1{
+    margin-bottom: 0;
 }

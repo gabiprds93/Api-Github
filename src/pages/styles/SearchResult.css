@@ -1,3 +1,14 @@
+.search-result{
+    padding: 1rem 2rem;
+}
+.search-result > div:nth-child(2){
+    padding-left: 1rem;
+}
 .search-result img{
     width: 100%;
+}
+
+.btn-loading{
+    display: block;
+    margin: auto;
 }

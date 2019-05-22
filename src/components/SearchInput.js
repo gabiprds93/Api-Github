@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import { Row, Col, Icon, Select, Button } from 'antd';
 import './styles/SearchInput.css';
@@ -51,50 +51,19 @@ class SearchInput extends React.Component {
     super(props);
     this.state = {
       data: [],
-      // value: undefined,
     };
-  }
-
-  handleSelect = (value, option) => {
-    console.log("value", value);
-    console.log("option", option);
   }
   
   handleSearch = value => {
     fetch(value, data => this.setState({ data }));
   };
 
-  // handleChange = value => {
-  //   this.setState({ value });
-  // };
-
-  // fetchData = async () => {
-  //   this.setState({
-  //     loading: true,
-  //     error: null,
-  //   });
-
-  //   try{
-  //     const response = await fetch(`https://api.github.com/users/${this.props.value}`);
-  //     const data = await response.json();
-  //     this.setState({
-  //       loading: false,
-  //       data: data,
-  //     });
-  //   } catch(error){
-  //     this.setState({
-  //       loading: false,
-  //       error: error,
-  //     });
-  //   }
-  // }
-
   render() {
     const options = this.state.data.map(d => <Option key={d.value}>{d.text}</Option>);
     return (
       <React.Fragment>
         <Row>
-          <Col xs={24} md={12} offset={6} className="search-bar">
+          <Col xs={{span:24, offset:0}} md={{span:12, offset:6}} className="search-bar">
             <Link to='/'>
               <Icon type="github" />
             </Link>
@@ -106,7 +75,6 @@ class SearchInput extends React.Component {
               defaultActiveFirstOption={false}
               showArrow={false}
               filterOption={false}
-              // onSelect={this.handleSelect}
               onSearch={this.handleSearch}
               onChange={this.props.onChange}
               notFoundContent={null}
