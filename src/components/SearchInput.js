@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Select, Button } from 'antd';
+import { Row, Col, Icon, Select, Button } from 'antd';
+import './styles/SearchInput.css';
+
 import jsonp from 'fetch-jsonp';
 import querystring from 'querystring';
 
@@ -91,24 +93,31 @@ class SearchInput extends React.Component {
     const options = this.state.data.map(d => <Option key={d.value}>{d.text}</Option>);
     return (
       <React.Fragment>
-        <Select
-          showSearch
-          value={this.props.value}
-          placeholder={this.props.placeholder}
-          style={this.props.style}
-          defaultActiveFirstOption={false}
-          showArrow={false}
-          filterOption={false}
-          // onSelect={this.handleSelect}
-          onSearch={this.handleSearch}
-          onChange={this.props.onChange}
-          notFoundContent={null}
-        >
-          {options}
-        </Select>
-        {/* <Link to='/search-result'> */}
-          <Button shape="circle" icon="search" onClick={this.props.onClick}></Button>
-        {/* </Link> */}
+        <Row>
+          <Col xs={24} md={12} offset={6} className="search-bar">
+            <Link to='/'>
+              <Icon type="github" />
+            </Link>
+            <Select
+              showSearch
+              value={this.props.value}
+              placeholder={this.props.placeholder}
+              style={this.props.style}
+              defaultActiveFirstOption={false}
+              showArrow={false}
+              filterOption={false}
+              // onSelect={this.handleSelect}
+              onSearch={this.handleSearch}
+              onChange={this.props.onChange}
+              notFoundContent={null}
+            >
+              {options}
+            </Select>
+            <Link to='/search-result'>
+              <Button shape="circle" onClick={this.props.onClick}><Icon type="search" /></Button>
+            </Link>
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }

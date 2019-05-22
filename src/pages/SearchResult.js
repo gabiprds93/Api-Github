@@ -1,5 +1,7 @@
 import React from 'react';
-import {Button} from 'antd'
+import {Row, Col, Button} from 'antd';
+import {Link} from 'react-router-dom';
+import './styles/SearchResult.css'
 
 class SearchResult extends React.Component{
     constructor(props){
@@ -47,10 +49,24 @@ class SearchResult extends React.Component{
         )
       }
         return(
-            <div>
-              {this.props.user.name}
-            {this.props.value} - {this.props.login}
-            </div>
+            <Row className="search-result">
+              <Col xs={4} md={2}>
+                <img src={this.props.user.avatar_url}/>
+              </Col>
+              <Col xs={20} md={22}>
+                <Row>
+                  <Col xs={24}>
+                    <Link to='/user-profile'>{this.props.user.login}</Link>
+                  </Col>
+                  <Col xs={24}>
+                    {this.props.user.name}
+                  </Col>
+                  <Col span={24}>
+                    {this.props.user.location}
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
             
         );
     };
