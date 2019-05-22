@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {HashRouter , Switch, Route} from 'react-router-dom';
 import SearchResult from '../pages/SearchResult';
 import UserProfile from '../pages/UserProfile';
 import Layout from './Layout';
@@ -46,7 +46,7 @@ class App extends React.Component{
   
   render(){
     return (
-      <BrowserRouter>
+      <HashRouter >
         <Layout onChange={this.handleChange} value={this.state.value} onClick={this.fetchData}>
           <Switch>
             <Route exact path="/search-result" render={(props) => (
@@ -62,7 +62,7 @@ class App extends React.Component{
             />
           </Switch>
         </Layout>
-      </BrowserRouter>
+      </HashRouter >
     );
   }
 }

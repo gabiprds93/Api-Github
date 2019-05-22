@@ -2,11 +2,13 @@
   "name": "prueba-tecnica",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://gabiprds93.github.io/Api-Github",
   "dependencies": {
     "antd": "^3.18.1",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
     "fetch-jsonp": "^1.1.3",
+    "gh-pages": "^2.0.1",
     "querystring": "^0.2.0",
     "react": "^16.8.6",
     "react-app-rewired": "^2.1.3",
@@ -16,6 +18,8 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
